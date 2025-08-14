@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-// import {UserDispatch} from "./App";
-import {UserDispatch} from "./AppRefectory";
+import {UserDispatch} from "./App";
+// import {UserDispatch} from "./AppRefectory";
 
 const User = React.memo(function User({user}) {
     const {username, email, id, active} = user;

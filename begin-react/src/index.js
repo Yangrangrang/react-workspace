@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AppRefectory from "./AppRefectory";
+import Hello from "./Hello";
+import CounterClass from "./CounterClass";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 /**
@@ -13,7 +15,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/*<App />*/}
-    <AppRefectory/>
+    {/*<AppRefectory/>*/}
+    {/*  <Hello name='react' isSpecial color='red'/>*/}
+      <CounterClass/>
   </React.StrictMode>
 );
 
