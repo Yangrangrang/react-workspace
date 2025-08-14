@@ -1,11 +1,7 @@
-import { useRef , useReducer , useMemo , useCallback , createContext} from "react";
+import { useRef , useReducer , useMemo , createContext} from "react";
 import './App.css';
-import UserListArrayUseRef from "./UserListArrayUseRef";
-import CreateUser from "./CreateUser";
-import useInputs from "./useInputs";
-import useInputsReducer from "./useInputsReducer";
-import ContextSample from "./ContextSample";
 import UserListArrayContext from "./UserListArrayContext";
+import CreateUserRefectory from "./CreateUserRefectory";
 
 function countActiveUsers(users) {
 	console.log("활성 사용자 수를 세는중...");
@@ -63,44 +59,16 @@ function reducer(state, action) {
 
 export const UserDispatch = createContext(null);
 
-function App() {
+function AppRefectory() {
 	const [state, dispatch] = useReducer(reducer, initialState);
-	// const [form, onChange, reset] = useInputs({
-	// 	username: '',
-	// 	email: '',
-	// });
-	const [form,onChange, reset] = useInputsReducer({
-		username: '',
-		email: ''
-	});
-	const {username, email} = form;
-	const nextId = useRef(4);
 	const {users} = state;
-
-	const onCreate = useCallback(() => {
-		dispatch({
-			type: 'CREATE_USER',
-			user: {
-				id: nextId.current,
-				username,
-				email
-			}
-		});
-		nextId.current += 1;
-		reset();
-	}, [username, email, reset]);
 
 	const count = useMemo(() => countActiveUsers(users), [users]);
 
 	return (
 		<>
 			<UserDispatch.Provider value={dispatch}>
-				<CreateUser
-					username={username}
-					email={email}
-					onChange={onChange}
-					onCreate={onCreate}
-				/>
+				<CreateUserRefectory/>
 				<UserListArrayContext
 					users = {users}
 				/>
@@ -108,10 +76,8 @@ function App() {
 					marginBottom: '100px'
 				}}>활성 사용자 수: {count}</div>
 			</UserDispatch.Provider>
-
-			<ContextSample/>
 		</>
 	);
 }
 
-export default App;
+export default AppRefectory;

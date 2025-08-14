@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function User({user, onRemove, onToggle}) {
+const User = React.memo(function User({user, onRemove, onToggle}) {
     const {username, email, id, active} = user;
     /*
     useEffect(() => {
@@ -54,7 +54,7 @@ function User({user, onRemove, onToggle}) {
             <button onClick={() => onRemove(id)}>삭제</button>
         </div>
     )
-}
+});
 
 function UserListArrayUseRef({ users, onRemove, onToggle}) {
     const style = {
@@ -85,4 +85,11 @@ function UserListArrayUseRef({ users, onRemove, onToggle}) {
     );
 }
 
-export default UserListArrayUseRef;
+export default React.memo(
+    UserListArrayUseRef,
+    (prevProps, nextProps) => nextProps.users === prevProps.users)
+    // users 가 같다면 리렌더링 하지 않겠다.
+    // 이렇게 사용할 때, 주의 사항은 나머지 props 가 정말로 고정적이여서 비교를 할 필요가 없는지 확인이 필요함
+    // 현재 코드에서 만약 App.js 에서 함수형 업데이트(setUsers 에서 users => user.)를 하지 않았더라면, onRemove나 onToggle을 호출하게 될때,
+    // 해당 함수에서 최신상태의 users 를 가리키고 있지 않기 때문에 심각한 오류가 생김.
+;
