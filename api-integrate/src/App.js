@@ -3,6 +3,7 @@ import './App.css';
 import Users from "./Users";
 import UsersReducer from "./UsersReducer";
 import UsersRefectory from "./UsersRefectory";
+import UsersAsync from "./UsersAsync";
 
 function App() {
     return (
@@ -10,6 +11,7 @@ function App() {
             {/*<Users/>*/}
             {/*<UsersReducer/>*/}
             <UsersRefectory/>
+            {/*<UsersAsync/>*/}
         </>
     );
 }
