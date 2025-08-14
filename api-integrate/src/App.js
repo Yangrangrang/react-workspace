@@ -1,17 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
-import Users from "./Users";
-import UsersReducer from "./UsersReducer";
-import UsersRefectory from "./UsersRefectory";
-import UsersAsync from "./UsersAsync";
+import {UsersProvider} from "./UsersContext";
+import UsersV2 from "./UsersV2";
 
 function App() {
     return (
         <>
-            {/*<Users/>*/}
-            {/*<UsersReducer/>*/}
-            <UsersRefectory/>
-            {/*<UsersAsync/>*/}
+            <UsersProvider>
+                <UsersV2/>
+            </UsersProvider>
         </>
     );
 }
