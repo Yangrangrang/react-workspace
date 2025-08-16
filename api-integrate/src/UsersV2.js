@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import User from "./User";
-import {getUsers, useUsersDispatch, useUsersState} from "./UsersContext";
+// import {getUsers, useUsersDispatch, useUsersState} from "./UsersContext";
+import {getUsers, useUsersDispatch, useUsersState} from "./UsersContextV3";
 
 function UserV2() {
     const [userId, setUserId] = useState(null);

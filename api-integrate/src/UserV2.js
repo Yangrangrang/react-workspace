@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
-import {getUser, useUsersDispatch, useUsersState} from "./UsersContext";
+// import {getUser, useUsersDispatch, useUsersState} from "./UsersContext";
+import {getUser, useUsersDispatch, useUsersState} from "./UsersContextV3";
 
 function User({id}) {
     const state = useUsersState();

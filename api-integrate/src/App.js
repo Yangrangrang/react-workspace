@@ -1,5 +1,6 @@
 import './App.css';
-import {UsersProvider} from "./UsersContext";
+// import {UsersProvider} from "./UsersContext";
+import {UsersProvider} from "./UsersContextV3";
 import UsersV2 from "./UsersV2";
 
 function App() {
