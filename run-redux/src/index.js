@@ -15,6 +15,7 @@ const store = configureStore({
     reducer: rootReducer,
 });
 console.log(store.getState());
+console.log(store.getState().counterSlice);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
