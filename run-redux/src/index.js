@@ -13,6 +13,7 @@ import rootReducer from "./modules";
 // const store = createStore(rootReducer)
 const store = configureStore({
     reducer: rootReducer,
+    devTools: true,
 });
 console.log(store.getState());
 console.log(store.getState().counterSlice);
