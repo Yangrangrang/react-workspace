@@ -1,15 +1,12 @@
 import React, {useCallback} from "react";
-import {useSelector, useDispatch} from "react-redux";
+import {connect} from "react-redux";
 import Todos from "../components/Todos";
 import {addTodo, toggleTodo} from "../modules/todosSlice";
 
-function TodosContainer() {
-    // useSelector 에서의 state 는 Redux의 전체 store 상태 객체를 의미
-    const todos = useSelector(state => state.todos);
-    const dispatch = useDispatch();
+function TodosContainer({todos, addTodo, toggleTodo}) {
 
-    const onCreate = useCallback(text => dispatch(addTodo(text)),[dispatch]);
-    const onToggle = useCallback(id => dispatch(toggleTodo(id)),[dispatch]);
+    const onCreate = useCallback(text => (addTodo(text)),[addTodo]);
+    const onToggle = useCallback(id => (toggleTodo(id)),[toggleTodo]);
 
     return <Todos
         todos={todos}
@@ -18,4 +15,13 @@ function TodosContainer() {
     />
 }
 
-export default TodosContainer;
+const mapStateToProps = state => ({todos: state.todos})
+const mapDispatchToProps = {
+    addTodo,
+    toggleTodo
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TodosContainer);
