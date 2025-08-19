@@ -1,6 +1,12 @@
 // api 를 요청 하면, 요청이 진행중인 상태, 성공했을떄 데이터의 상태, 실패했다면 에러의 상태를 관리
 import * as postsAPI from '../api/posts';
-import {reducerUtils, createPromiseThunk, handleAsyncActions} from "../lib/asyncUtils";
+import {
+    reducerUtils,
+    createPromiseThunk,
+    handleAsyncActions,
+    createPromiseThunkById,
+    handleAsyncActionsById
+} from "../lib/asyncUtils";
 
 // api 를 요청하기 위해 액션을 만들어야함.
 // 각 api 마다 액션3개씩 만든다
@@ -58,17 +64,20 @@ export const getPosts = createPromiseThunk(GET_POSTS, postsAPI.getPosts);
 //     }
 // };
 
-export const getPost = createPromiseThunk(GET_POST, postsAPI.getPostById);
+// export const getPost = createPromiseThunk(GET_POST, postsAPI.getPostById);
+export const getPost = createPromiseThunkById(GET_POST, postsAPI.getPostById);
+
 export const clearPost = () => ({type: CLEAR_POST})
 
 const initialState = {
     posts: reducerUtils.initial(),
-    post: reducerUtils.initial(),
+    post: {},
 }
 
 // 리듀서
 const getPostsReducer = handleAsyncActions(GET_POSTS, 'posts', true);
-const getPostReducer = handleAsyncActions(GET_POST, 'post');
+// const getPostReducer = handleAsyncActions(GET_POST, 'post');
+const getPostReducer = handleAsyncActionsById(GET_POST, 'post', true);
 
 export default function posts(state = initialState, action) {
     switch (action.type) {

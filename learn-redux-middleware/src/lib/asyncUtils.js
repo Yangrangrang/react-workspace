@@ -26,6 +26,34 @@ export const createPromiseThunk = (type, promiseCreator) => {
     return thunkCreator; // (그냥 return 으로 해도 됨)
 }
 
+const defaultIdSelector = param => param;
+export const createPromiseThunkById = (type, promiseCreator, idSelector = defaultIdSelector) => {
+    // idSelector : 함수타입으로 가져올 예정, 용도는 api를 호출 할 때, 사용하는 파라미터에서 id 를 어떻게 선택할지 정의해주는 함수
+
+    const [SUCCEESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`]
+
+    // Thunk 함수 생성
+    return param => async dispatch => {
+        const id = idSelector(param);
+        dispatch({type, meta:id})
+        try {
+            const payload = await promiseCreator(param)
+            dispatch({
+                type: SUCCEESS,
+                payload,
+                meta:id
+            });
+        } catch (e) {
+            dispatch({
+                type: ERROR,
+                payload: e,
+                error: true,
+                meta:id
+            })
+        }
+    }
+}
+
 // 리듀서에 있는 코드를 간단히 작성하기 위해
 export const handleAsyncActions = (type, key, keepData) => {
     const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
@@ -48,6 +76,43 @@ export const handleAsyncActions = (type, key, keepData) => {
                 return {
                     ...state,
                     [key]: reducerUtils.error(action.payload),
+                }
+            default:
+                return state;
+        }
+    }
+    return reducer;
+}
+
+export const handleAsyncActionsById = (type, key, keepData) => {
+    const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
+    const reducer = (state, action) => {
+        const id = action.meta;
+        switch (action.type) {
+            case type:
+                return {
+                    ...state,
+                    // keepData -> 기존의 상태를 로딩할때도 유지하겠다.
+                    [key]: {
+                        ...state[key],
+                        [id]: reducerUtils.loading(keepData ? state[key][id] && state[key][id].data : null)
+                    },
+                }
+            case SUCCESS:
+                return {
+                    ...state,
+                    [key]: {
+                        ...state[key],
+                        [id] : reducerUtils.success(action.payload),
+                    }
+                }
+            case ERROR:
+                return {
+                    ...state,
+                    [key]: {
+                        ...state[key],
+                        [id] : reducerUtils.error(action.payload),
+                    }
                 }
             default:
                 return state;
