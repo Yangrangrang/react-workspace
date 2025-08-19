@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import Post from "../components/Post";
-import {clearPost, getPost} from "../modules/posts";
+import {clearPost, getPost, printState} from "../modules/posts";
 import {reducerUtils} from "../lib/asyncUtils";
 import {useNavigate} from "react-router-dom";
 
@@ -28,9 +28,10 @@ function PostContainer({postId}) {
     return (
         <>
             <button onClick={() => navigate('/')}>홈으로 이동</button>
+            <button onClick={() => dispatch(printState())}>상태 출력</button>
             <Post post={data}/>
         </>
-    )
+    );
 }
 
 export default PostContainer;

@@ -8,7 +8,7 @@ import {
     createPromiseSagaById
 } from "../lib/asyncUtils";
 // import {call, put, takeEvery} from 'redux-saga/effects';
-import {takeEvery} from 'redux-saga/effects';
+import {takeEvery, select} from 'redux-saga/effects';
 
 // api 를 요청하기 위해 액션을 만들어야함.
 // 각 api 마다 액션3개씩 만든다
@@ -22,6 +22,7 @@ const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
 const GET_POST_ERROR = 'GET_POST_ERROR';
 
 const CLEAR_POST = 'CLEAR_POST';
+const PRINT_STATE = 'PRINT_STATE';
 
 //기존 Thunk 함수 대신,
 export const getPosts = () => ({type: GET_POSTS});
@@ -30,6 +31,7 @@ export const getPost = (id) => ({
     payload: id,    // api 호출 할때, 이 값을 파라미터로 사용하기 위해
     meta: id        // 리듀서에서 처리할때 사용
 })
+export const printState = () => ({type: PRINT_STATE});
 
 // function* getPostsSaga() {
 //     try {
@@ -68,11 +70,16 @@ export const getPost = (id) => ({
 // }
 
 const getPostsSaga = createPromiseSaga(GET_POSTS, postsAPI.getPosts);
-const getPostSaga = createPromiseSagaById(GET_POST, postsAPI.getPostById)
+const getPostSaga = createPromiseSagaById(GET_POST, postsAPI.getPostById);
+function* printStateSaga() {
+    const state = yield select(state => state.posts);
+    console.log(state);
+}
 
 export function* postsSaga() {
     yield takeEvery(GET_POSTS, getPostsSaga);
     yield takeEvery(GET_POST, getPostSaga);
+    yield takeEvery(PRINT_STATE, printStateSaga);
 }
 
 export const clearPost = () => ({type: CLEAR_POST})
