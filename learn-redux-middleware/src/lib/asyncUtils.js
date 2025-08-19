@@ -1,3 +1,46 @@
+import {call,put} from 'redux-saga/effects';
+
+export const createPromiseSaga = (type, promiseCreator) => {
+    const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
+    return function* saga(action) {
+        try {
+            const result = yield call(promiseCreator, action.payload);
+            yield put({
+                type:SUCCESS,
+                payload: result
+            })
+        } catch (e) {
+            yield put({
+                type:ERROR,
+                error: true,
+                payload: e
+            })
+        }
+    };
+}
+
+export const createPromiseSagaById = (type, promiseCreator) => {
+    const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
+    return function* saga(action) {
+        const id = action.meta;
+        try {
+            const result = yield call(promiseCreator, action.payload);
+            yield put({
+                type:SUCCESS,
+                payload: result,
+                meta: id
+            })
+        } catch (e) {
+            yield put({
+                type:ERROR,
+                error: true,
+                payload: e,
+                meta: id
+            })
+        }
+    };
+}
+
 export const createPromiseThunk = (type, promiseCreator) => {
     // type: 요청을 시작했음을 알려주는 타입
     // promiseCreator : 프로미스를 만들어주는 함수

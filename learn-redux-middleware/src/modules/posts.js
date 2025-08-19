@@ -2,12 +2,13 @@
 import * as postsAPI from '../api/posts';
 import {
     reducerUtils,
-    createPromiseThunk,
     handleAsyncActions,
-    createPromiseThunkById,
-    handleAsyncActionsById
+    handleAsyncActionsById,
+    createPromiseSaga,
+    createPromiseSagaById
 } from "../lib/asyncUtils";
-import {call, put, takeEvery} from 'redux-saga/effects';
+// import {call, put, takeEvery} from 'redux-saga/effects';
+import {takeEvery} from 'redux-saga/effects';
 
 // api 를 요청하기 위해 액션을 만들어야함.
 // 각 api 마다 액션3개씩 만든다
@@ -30,41 +31,44 @@ export const getPost = (id) => ({
     meta: id        // 리듀서에서 처리할때 사용
 })
 
-function* getPostsSaga() {
-    try {
-        const posts = yield call(postsAPI.getPosts);
-        // getPosts라는 api 호출 되면 프로미스 반환
-        // yield call 통해서 프로미스가 끝날때까지 기다렸다가 그 결과물이 posts 에 담김
-        yield put({
-            type: GET_POSTS_SUCCESS,
-            payload: posts,
-        });
-    } catch (e) {
-        yield put({
-            type: GET_POSTS_ERROR,
-            payload: e,
-            error: true,
-        });
-    }
-}
+// function* getPostsSaga() {
+//     try {
+//         const posts = yield call(postsAPI.getPosts);
+//         // getPosts라는 api 호출 되면 프로미스 반환
+//         // yield call 통해서 프로미스가 끝날때까지 기다렸다가 그 결과물이 posts 에 담김
+//         yield put({
+//             type: GET_POSTS_SUCCESS,
+//             payload: posts,
+//         });
+//     } catch (e) {
+//         yield put({
+//             type: GET_POSTS_ERROR,
+//             payload: e,
+//             error: true,
+//         });
+//     }
+// }
 
-function* getPostSaga(action) {
-    const id = action.payload;
-    try {
-        const post = yield call(postsAPI.getPostById, id);
-        yield put({
-            type: GET_POST_SUCCESS,
-            payload: post,
-            meta: id
-        });
-    } catch (e) {
-        yield put({
-            type: GET_POST_ERROR,
-            payload: e,
-            error: true,
-        });
-    }
-}
+// function* getPostSaga(action) {
+//     const id = action.payload;
+//     try {
+//         const post = yield call(postsAPI.getPostById, id);
+//         yield put({
+//             type: GET_POST_SUCCESS,
+//             payload: post,
+//             meta: id
+//         });
+//     } catch (e) {
+//         yield put({
+//             type: GET_POST_ERROR,
+//             payload: e,
+//             error: true,
+//         });
+//     }
+// }
+
+const getPostsSaga = createPromiseSaga(GET_POSTS, postsAPI.getPosts);
+const getPostSaga = createPromiseSagaById(GET_POST, postsAPI.getPostById)
 
 export function* postsSaga() {
     yield takeEvery(GET_POSTS, getPostsSaga);
