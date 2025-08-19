@@ -17,7 +17,12 @@ export const createPromiseThunk = (type, promiseCreator) => {
         } catch (e) {
             dispatch({
                 type: ERROR,
-                payload: e,
+                // 에러 객체로 바로 넘기면 안되고 풀어서
+                payload: {
+                    message: e.message,
+                    code: e.code,
+                    response: e.response?.data,
+                },
                 error: true
             })
         }
