@@ -1,4 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {delay, put, takeEvery, takeLatest} from 'redux-saga/effects';
+
+const INCREASE_ASYNC = 'INCREASE_ASYNC';
+const DECREASE_ASYNC = 'DECREASE_ASYNC';
 
 const counter = createSlice({
     name: 'counter',
@@ -13,18 +17,24 @@ const counter = createSlice({
     }
 })
 
-export const increaseAsync = () => (dispatch) => {
-    setTimeout(() => {
-        dispatch(increase());   // 비동기적으로 increase 액션 디스패치
-    }, 1000)
+function* increaseSaga() {
+    yield delay(1000);
+    yield put(counter.actions.increase());
 }
 
-export const decreaseAsync = () => (dispatch) => {
-    setTimeout(() => {
-        dispatch(decrease());
-    }, 1000)
+function* decreaseSaga() {
+    yield delay(1000);
+    yield put(counter.actions.decrease());
 }
 
+export function* counterSaga() {
+    yield takeEvery(INCREASE_ASYNC, increaseSaga);
+    yield takeLatest(DECREASE_ASYNC, decreaseSaga);
+}
+
+// 액션 생성자
+export const increaseAsync = () => ({ type: INCREASE_ASYNC });
+export const decreaseAsync = () => ({ type: DECREASE_ASYNC });
 
 export const {increase, decrease} = counter.actions;
 export default counter.reducer;

@@ -8,7 +8,7 @@ import PostPage from "./pages/PostPage";
 function App() {
     return (
         <>
-            {/*<CounterContainer/>*/}
+            <CounterContainer/>
             {/*<PostListContainer/>*/}
             <Routes>
                 <Route path="/" element={<PostListPage/>}/>

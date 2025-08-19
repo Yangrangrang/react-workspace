@@ -7,7 +7,6 @@ import {
     createPromiseThunkById,
     handleAsyncActionsById
 } from "../lib/asyncUtils";
-import {call, put, takeEvery} from 'redux-saga/effects';
 
 // api 를 요청하기 위해 액션을 만들어야함.
 // 각 api 마다 액션3개씩 만든다
@@ -22,54 +21,51 @@ const GET_POST_ERROR = 'GET_POST_ERROR';
 
 const CLEAR_POST = 'CLEAR_POST';
 
-//기존 Thunk 함수 대신,
-export const getPosts = () => ({type: GET_POSTS});
-export const getPost = (id) => ({
-    type: GET_POST,
-    payload: id,    // api 호출 할때, 이 값을 파라미터로 사용하기 위해
-    meta: id        // 리듀서에서 처리할때 사용
-})
+// getPosts 라는 thunk 함수 생성
+// export const getPosts = () => async dispatch => {
+//     // 요청이 시작됨.
+//     dispatch({type: GET_POSTS})
+//     // API 를 호출.
+//     try {
+//         const posts = await postsAPI.getPosts();
+//         // 성공했을 때
+//         dispatch({
+//             type: GET_POSTS_SUCCESS,
+//             posts
+//         })
+//     } catch (e) {
+//         // 실패했을 때
+//         dispatch({
+//             type: GET_POSTS_ERROR,
+//             error: e
+//         })
+//     }
+// };
 
-function* getPostsSaga() {
-    try {
-        const posts = yield call(postsAPI.getPosts);
-        // getPosts라는 api 호출 되면 프로미스 반환
-        // yield call 통해서 프로미스가 끝날때까지 기다렸다가 그 결과물이 posts 에 담김
-        yield put({
-            type: GET_POSTS_SUCCESS,
-            payload: posts,
-        });
-    } catch (e) {
-        yield put({
-            type: GET_POSTS_ERROR,
-            payload: e,
-            error: true,
-        });
-    }
-}
+export const getPosts = createPromiseThunk(GET_POSTS, postsAPI.getPosts);
 
-function* getPostSaga(action) {
-    const id = action.payload;
-    try {
-        const post = yield call(postsAPI.getPostById, id);
-        yield put({
-            type: GET_POST_SUCCESS,
-            payload: post,
-            meta: id
-        });
-    } catch (e) {
-        yield put({
-            type: GET_POST_ERROR,
-            payload: e,
-            error: true,
-        });
-    }
-}
+// export const getPost = id => async dispatch => {
+//     // 요청이 시작됨.
+//     dispatch({type: GET_POST})
+//     // API 를 호출.
+//     try {
+//         const post = await postsAPI.getPostById(id);
+//         // 성공했을 때
+//         dispatch({
+//             type: GET_POST_SUCCESS,
+//             post
+//         })
+//     } catch (e) {
+//         // 실패했을 때
+//         dispatch({
+//             type: GET_POST_ERROR,
+//             error: e
+//         })
+//     }
+// };
 
-export function* postsSaga() {
-    yield takeEvery(GET_POSTS, getPostsSaga);
-    yield takeEvery(GET_POST, getPostSaga);
-}
+// export const getPost = createPromiseThunk(GET_POST, postsAPI.getPostById);
+export const getPost = createPromiseThunkById(GET_POST, postsAPI.getPostById);
 
 export const clearPost = () => ({type: CLEAR_POST})
 
@@ -80,6 +76,7 @@ const initialState = {
 
 // 리듀서
 const getPostsReducer = handleAsyncActions(GET_POSTS, 'posts', true);
+// const getPostReducer = handleAsyncActions(GET_POST, 'post');
 const getPostReducer = handleAsyncActionsById(GET_POST, 'post', true);
 
 export default function posts(state = initialState, action) {
