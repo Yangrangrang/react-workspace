@@ -5,15 +5,26 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchUserProfile} from "../modules/github/userThunk";
 import type {AppDispatch, RootState} from "../modules/store";
 import GithubProfileInfo from "../components/github/GithubProfileInfo";
+import {fetchUserProfileRequest} from "../modules/github/githubSlice";
 
 export default function GithubProfileLoader() {
 
-    const {data, loading, error} = useSelector((state: RootState) => state.github.userProfile);
-    const dispatch = useDispatch<AppDispatch>();
+    // const {data, loading, error} = useSelector((state: RootState) => state.github.userProfile);
+    // const dispatch = useDispatch<AppDispatch>();
 
+    // const handleSubmit = (username: string) => {
+    //     dispatch(fetchUserProfile(username));
+
+    // };
+
+    const {data, loading, error} = useSelector((state: RootState) => state.githubSlice.userProfile);
+    const dispatch = useDispatch<AppDispatch>();
     const handleSubmit = (username: string) => {
-        dispatch(fetchUserProfile(username));
+        console.log(username);
+        dispatch(fetchUserProfileRequest(username));
     };
+
+    console.log(data);
 
     return (
         <>
