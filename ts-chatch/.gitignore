@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.log
+# Parcel cache
+.cache/
+.parcel-cache/
+
+# TypeScript
+*.tsbuildinfo
