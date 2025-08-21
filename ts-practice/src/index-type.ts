@@ -25,5 +25,3 @@ interface User {
 
 let keysOfUser: keyof User;
 keysOfUser = "age";
-
-let helloMethod = User["hello"]
