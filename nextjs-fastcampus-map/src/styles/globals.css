@@ -1,82 +1,52 @@
 @import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  height: 52px;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  background: white;
-}
+/* 커스텀 컴포넌트 레이어 */
+@layer components {
+  .navbar {
+    @apply flex justify-between items-center fixed w-full top-0 h-[52px] shadow-sm bg-white;
+  }
 
-.navbar__logo {
-  color: darkblue;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0px 18px;
-}
-
-.navbar__list {
-  padding: 0px 18px;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.navbar__button {
-  cursor: pointer;
-  display: none;
-}
-
-.navbar__list--item {
-  cursor: pointer;
-}
-
-.navbar__list--item:hover {
-  color: darkgray;
-}
-
-.layout {
-  padding-top: 52px;
-}
-
-@media only screen and (max-width: 600px) {
-  .navbar--mobile {
-    position: fixed;
-    width: 100%;
-    top: 52px;
-    background: darkblue;
-    color: white;
-    height: 100vh;
+  .navbar__logo {
+    @apply text-blue-800 text-[18px] font-semibold cursor-pointer px-[18px] py-0;
   }
 
   .navbar__list {
-    display: none;
+    @apply flex items-center gap-3 px-[18px];
   }
 
   .navbar__button {
-    display: block;
-    padding: 0px 18px;
+    @apply hidden cursor-pointer;
   }
 
-  .navbar__list--item--mobile {
-    cursor: pointer;
+  .navbar__list--item {
+    @apply cursor-pointer hover:text-gray-500;
   }
 
-  .navbar__list--item--mobile:hover {
-    color: darkgray;
+  .layout {
+    @apply pt-[52px];
   }
 
-  .navbar__list--mobile {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: start;
-    padding: 24px 18px;
-  }
+  /* 모바일 전용 */
+  @media (max-width: 600px) {
+    .navbar--mobile {
+      @apply fixed top-[52px] w-full h-screen bg-blue-900 text-white;
+    }
 
+    .navbar__list {
+      @apply hidden;
+    }
+
+    .navbar__button {
+      @apply block px-[18px];
+    }
+
+    .navbar__list--item--mobile {
+      @apply cursor-pointer hover:text-gray-400;
+    }
+
+    .navbar__list--mobile {
+      @apply flex flex-col gap-4 items-start px-[18px] py-6;
+    }
+  }
 }
