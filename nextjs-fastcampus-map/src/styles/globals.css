@@ -1,5 +1,4 @@
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
 
 /* 커스텀 컴포넌트 레이어 */
 @layer components {
