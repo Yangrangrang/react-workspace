@@ -13,12 +13,7 @@ const DEFAULT_LAT = 37.497625203;
 const DEFAULT_LNG = 127.03088379;
 
 export default function Map() {
-    console.log("test");
-    console.log(process.env.NEXT_PUBLIC_KAKAO_CLIENT);
-    console.log("생성된 URL:", `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_CLIENT}&autoload=false`);
     const loadKakaoMap = () => {
-        console.log("loadKakaoMap 호출됨");
-        console.log("kakao 객체:", window.kakao);
         // kakao map 로드
         window.kakao.maps.load(() => {
             const mapContainer = document.getElementById("map");
