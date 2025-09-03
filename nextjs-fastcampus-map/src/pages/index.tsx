@@ -3,6 +3,7 @@ import Markers from "@/components/Markers";
 
 import * as stores from "@/data/store_data.json";
 import {useState} from "react";
+import StoreBox from "@/components/StoreBox";
 
 export default function Home() {
 
@@ -16,6 +17,7 @@ export default function Home() {
         <>
             <Map setMap={setMap}/>
             <Markers map={map} storeDatas={storeDatas} setCurrentStore={setCurrentStore}/>
+            <StoreBox store={currentStore} setStore={setCurrentStore} />
         </>
     );
 };
