@@ -3,13 +3,13 @@ import {useEffect, Dispatch, SetStateAction, useCallback} from "react";
 interface MarkerProps {
     map: any;
     storeDatas: any[];
-    setCurrentStore: Dispatch<SetStateAction<any>>;
+    stores: Dispatch<SetStateAction<any>>;
 }
 
 export default function Markers({
     map,
     storeDatas,
-    setCurrentStore
+    stores
 }: MarkerProps) {
 
     const loadKakaoMarkers = useCallback(() => {
@@ -68,11 +68,11 @@ export default function Markers({
 
                 // 선택한 가게 저장
                 window.kakao.maps.event.addListener(marker, "click", function () {
-                    setCurrentStore(store);
+                    stores(store);
                 });
             });
         }
-    }, [map, setCurrentStore, storeDatas]);
+    }, [map, stores, storeDatas]);
 
     useEffect(() => {
         loadKakaoMarkers();
