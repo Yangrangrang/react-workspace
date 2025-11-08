@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
           className="text-white cursor-pointer no-underline text-3xl font-bold flex items-center hover:text-gray-100 transition-colors"
           onClick={closeMenu}
         >
-          MyWebsite
+          Y.HN
         </Link>
 
         <div className="flex items-center gap-2.5">
