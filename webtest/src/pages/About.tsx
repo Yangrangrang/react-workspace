@@ -1,4 +1,5 @@
 import React from 'react';
+import ExampleComponent from '../components/ExampleComponent';
 
 const About: React.FC = () => {
   return (
@@ -56,6 +57,9 @@ const About: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Zustand & React Query 예시 */}
+      <ExampleComponent />
     </div>
   );
 };
