@@ -9,6 +9,7 @@ interface User {
 
 // 사용자 목록 가져오기
 export const useUsers = () => {
+  console.log("useUsers");
   return useQuery({
     queryKey: ['users'],
     queryFn: async (): Promise<User[]> => {
