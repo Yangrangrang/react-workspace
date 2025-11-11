@@ -34,53 +34,83 @@ const Home: React.FC = () => {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-            <div className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg transition-all text-center hover:-translate-y-3 hover:shadow-2xl">
+            <a
+              href="https://www.naver.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg transition-all text-center hover:-translate-y-3 hover:shadow-2xl cursor-pointer block no-underline"
+            >
               <div className="text-5xl mb-5">🚀</div>
               <h3 className="text-2xl mb-4 text-gray-900 dark:text-white">Fast Performance</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Lightning-fast load times and optimized performance for the best user experience.
               </p>
-            </div>
+            </a>
 
-            <div className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg transition-all text-center hover:-translate-y-3 hover:shadow-2xl">
+            <a
+              href="https://www.naver.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg transition-all text-center hover:-translate-y-3 hover:shadow-2xl cursor-pointer block no-underline"
+            >
               <div className="text-5xl mb-5">🎨</div>
               <h3 className="text-2xl mb-4 text-gray-900 dark:text-white">Beautiful Design</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Modern and elegant designs that capture attention and engage users.
               </p>
-            </div>
+            </a>
 
-            <div className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg transition-all text-center hover:-translate-y-3 hover:shadow-2xl">
+            <a
+              href="https://www.naver.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg transition-all text-center hover:-translate-y-3 hover:shadow-2xl cursor-pointer block no-underline"
+            >
               <div className="text-5xl mb-5">🔒</div>
               <h3 className="text-2xl mb-4 text-gray-900 dark:text-white">Secure & Safe</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Top-notch security measures to protect your data and privacy.
               </p>
-            </div>
+            </a>
 
-            <div className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg transition-all text-center hover:-translate-y-3 hover:shadow-2xl">
+            <a
+              href="https://www.naver.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg transition-all text-center hover:-translate-y-3 hover:shadow-2xl cursor-pointer block no-underline"
+            >
               <div className="text-5xl mb-5">📱</div>
               <h3 className="text-2xl mb-4 text-gray-900 dark:text-white">Responsive</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Fully responsive design that works perfectly on all devices.
               </p>
-            </div>
+            </a>
 
-            <div className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg transition-all text-center hover:-translate-y-3 hover:shadow-2xl">
+            <a
+              href="https://www.naver.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg transition-all text-center hover:-translate-y-3 hover:shadow-2xl cursor-pointer block no-underline"
+            >
               <div className="text-5xl mb-5">⚡</div>
               <h3 className="text-2xl mb-4 text-gray-900 dark:text-white">Easy to Use</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Intuitive interface that anyone can use without technical knowledge.
               </p>
-            </div>
+            </a>
 
-            <div className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg transition-all text-center hover:-translate-y-3 hover:shadow-2xl">
+            <a
+              href="https://www.naver.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg transition-all text-center hover:-translate-y-3 hover:shadow-2xl cursor-pointer block no-underline"
+            >
               <div className="text-5xl mb-5">💬</div>
               <h3 className="text-2xl mb-4 text-gray-900 dark:text-white">24/7 Support</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Round-the-clock customer support to help you whenever you need it.
               </p>
-            </div>
+            </a>
           </div>
         </div>
       </section>
