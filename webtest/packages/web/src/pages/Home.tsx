@@ -1,6 +1,10 @@
 import React from 'react';
+import {formatDate} from "@webtest/shared/dist";
 
 const Home: React.FC = () => {
+  const test = formatDate(new Date());
+  console.log(test);
+
   return (
     <div className="w-full">
       {/* Hero Section */}
