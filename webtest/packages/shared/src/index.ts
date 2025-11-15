@@ -1,7 +1,6 @@
 // Shared utilities and types
 
 export const formatDate = (date: Date): string => {
-  console.log("formatDate");
   return date.toLocaleDateString();
 };
 
