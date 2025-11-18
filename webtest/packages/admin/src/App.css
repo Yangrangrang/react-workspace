@@ -1,0 +1,8 @@
+.App {
+  min-height: 100vh;
+  background-color: #f9fafb;
+}
+
+.dark .App {
+  background-color: #111827;
+}

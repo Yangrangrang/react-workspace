@@ -69,6 +69,17 @@ const Navbar: React.FC = () => {
                 Contact
               </Link>
             </li>
+            <li className="h-20 flex items-center max-md:w-full max-md:h-15">
+              <a
+                href="http://localhost:3001"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white no-underline px-6 py-2 h-full flex items-center transition-all hover:bg-white/10 hover:rounded"
+                onClick={closeMenu}
+              >
+                Admin
+              </a>
+            </li>
             <li className="h-20 flex items-center ml-2.5 max-md:w-full max-md:h-15 max-md:ml-0">
               <ThemeToggle />
             </li>

@@ -7,6 +7,9 @@
   ],
   "scripts": {
     "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=@webtest/web",
+    "dev:admin": "turbo run dev --filter=@webtest/admin",
+    "dev:server": "turbo run dev --filter=@webtest/server",
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint"
