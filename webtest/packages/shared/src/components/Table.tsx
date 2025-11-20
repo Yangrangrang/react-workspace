@@ -5,6 +5,7 @@ export interface Column<T> {
   header: string;
   render?: (row: T) => React.ReactNode;
   className?: string;
+  width?: string; // 'w-1/4', 'w-20', '200px' 등
 }
 
 export interface TableProps<T> {
@@ -37,7 +38,7 @@ export function Table<T>({
             {columns.map((column) => (
               <th
                 key={column.key}
-                className={`px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider ${column.className || ''}`}
+                className={`px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider ${column.width || ''} ${column.className || ''}`}
               >
                 {column.header}
               </th>
@@ -64,7 +65,7 @@ export function Table<T>({
                 {columns.map((column) => (
                   <td
                     key={column.key}
-                    className="px-6 py-4 text-sm text-gray-900 dark:text-white"
+                    className={`px-6 py-4 text-sm text-gray-900 dark:text-white ${column.width || ''}`}
                   >
                     {getCellValue(row, column)}
                   </td>
