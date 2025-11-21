@@ -20,6 +20,7 @@ const Users: React.FC = () => {
     {
       key: 'name',
       header: '이름',
+      width: 'w-1/5',
       render: (user) => (
         <span className="font-medium">{user.name}</span>
       ),
@@ -27,6 +28,7 @@ const Users: React.FC = () => {
     {
       key: 'email',
       header: '이메일',
+      width: 'w-1/4',
       render: (user) => (
         <span className="text-gray-500 dark:text-gray-400">{user.email}</span>
       ),
@@ -34,6 +36,7 @@ const Users: React.FC = () => {
     {
       key: 'role',
       header: '역할',
+      width: 'w-1/6',
       render: (user) => (
         <span className="text-gray-500 dark:text-gray-400">{user.role}</span>
       ),
@@ -41,6 +44,7 @@ const Users: React.FC = () => {
     {
       key: 'status',
       header: '상태',
+      width: 'w-1/6',
       render: (user) => (
         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
           user.status === '활성'
@@ -54,6 +58,7 @@ const Users: React.FC = () => {
     {
       key: 'actions',
       header: '작업',
+      width: 'w-1/5',
       render: (user) => (
         <div className="flex gap-3">
           <button className="text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-300">
