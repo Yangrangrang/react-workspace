@@ -21,7 +21,7 @@ const Posts: React.FC = () => {
     {
       key: 'title',
       header: '제목',
-      width: 'w-2/5',
+      className: 'min-w-[200px]',
       render: (post) => (
         <span className="font-medium">{post.title}</span>
       ),
@@ -29,7 +29,6 @@ const Posts: React.FC = () => {
     {
       key: 'author',
       header: '작성자',
-      width: 'w-1/6',
       render: (post) => (
         <span className="text-gray-500 dark:text-gray-400">{post.author}</span>
       ),
@@ -37,7 +36,6 @@ const Posts: React.FC = () => {
     {
       key: 'date',
       header: '날짜',
-      width: 'w-1/6',
       render: (post) => (
         <span className="text-gray-500 dark:text-gray-400">{post.date}</span>
       ),
@@ -45,7 +43,6 @@ const Posts: React.FC = () => {
     {
       key: 'views',
       header: '조회수',
-      width: 'w-1/12',
       render: (post) => (
         <span className="text-gray-500 dark:text-gray-400">{post.views}</span>
       ),
@@ -53,7 +50,6 @@ const Posts: React.FC = () => {
     {
       key: 'status',
       header: '상태',
-      width: 'w-1/12',
       render: (post) => (
         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
           post.status === '공개'
@@ -67,7 +63,6 @@ const Posts: React.FC = () => {
     {
       key: 'actions',
       header: '작업',
-      width: 'w-1/6',
       render: (post) => (
         <div className="flex gap-3">
           <button className="text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-300">

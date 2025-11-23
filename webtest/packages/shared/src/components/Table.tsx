@@ -5,7 +5,7 @@ export interface Column<T> {
   header: string;
   render?: (row: T) => React.ReactNode;
   className?: string;
-  width?: string; // 'w-1/4', 'w-20', '200px' 등
+  width?: string; // '200px', '100px' 등 픽셀 단위
 }
 
 export interface TableProps<T> {
@@ -31,14 +31,14 @@ export function Table<T>({
   };
 
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden ${className}`}>
-      <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+    <div className={`bg-white dark:bg-gray-800 rounded-lg shadow ${className}`}>
+      <table className="w-full divide-y divide-gray-200 dark:divide-gray-700">
         <thead className="bg-gray-50 dark:bg-gray-700">
           <tr>
             {columns.map((column) => (
               <th
                 key={column.key}
-                className={`px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider ${column.width || ''} ${column.className || ''}`}
+                className={`px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider ${column.className || ''}`}
               >
                 {column.header}
               </th>
@@ -65,7 +65,7 @@ export function Table<T>({
                 {columns.map((column) => (
                   <td
                     key={column.key}
-                    className={`px-6 py-4 text-sm text-gray-900 dark:text-white ${column.width || ''}`}
+                    className={`px-6 py-4 text-sm text-gray-900 dark:text-white ${column.className || ''}`}
                   >
                     {getCellValue(row, column)}
                   </td>
