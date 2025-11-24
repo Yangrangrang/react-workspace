@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Table, Column } from '@webtest/shared';
 
 interface Post {
@@ -11,6 +12,8 @@ interface Post {
 }
 
 const Posts: React.FC = () => {
+  const navigate = useNavigate();
+
   const posts: Post[] = [
     { id: 1, title: '첫 번째 게시글', author: '홍길동', date: '2025-11-18', views: 123, status: '공개' },
     { id: 2, title: '두 번째 게시글', author: '김철수', date: '2025-11-17', views: 456, status: '공개' },
@@ -82,7 +85,10 @@ const Posts: React.FC = () => {
         <h3 className="text-3xl font-medium text-gray-700 dark:text-white">
           게시판 관리
         </h3>
-        <button className="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded transition-colors">
+        <button
+          onClick={() => navigate('/posts/create')}
+          className="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded transition-colors"
+        >
           + 새 게시글
         </button>
       </div>
