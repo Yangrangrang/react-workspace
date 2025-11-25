@@ -7,6 +7,7 @@ import { queryClient } from './lib/queryClient';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Users from './pages/Users';
+import Boards from './pages/Boards';
 import Posts from './pages/Posts';
 import PostCreate from './pages/PostCreate';
 import Settings from './pages/Settings';
@@ -21,6 +22,7 @@ function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/users" element={<Users />} />
+              <Route path="/boards" element={<Boards />} />
               <Route path="/posts" element={<Posts />} />
               <Route path="/posts/create" element={<PostCreate />} />
               <Route path="/settings" element={<Settings />} />

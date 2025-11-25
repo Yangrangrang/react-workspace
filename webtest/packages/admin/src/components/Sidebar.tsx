@@ -7,7 +7,8 @@ const Sidebar: React.FC = () => {
   const menuItems = [
     { path: '/', label: '대시보드', icon: '📊' },
     { path: '/users', label: '사용자 관리', icon: '👥' },
-    { path: '/posts', label: '게시판 관리', icon: '📝' },
+    { path: '/boards', label: '게시판 관리', icon: '📋' },
+    { path: '/posts', label: '게시글 관리', icon: '📝' },
     { path: '/settings', label: '설정', icon: '⚙️' },
   ];
 
