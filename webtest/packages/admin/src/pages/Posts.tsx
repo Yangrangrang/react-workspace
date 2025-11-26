@@ -13,6 +13,14 @@ interface Post {
 
 const Posts: React.FC = () => {
   const navigate = useNavigate();
+  const [selectedBoard, setSelectedBoard] = React.useState('all');
+
+  const boards = [
+    { id: 'all', name: '전체' },
+    { id: '1', name: '공지사항' },
+    { id: '2', name: '자유게시판' },
+    { id: '3', name: 'Q&A' },
+  ];
 
   const posts: Post[] = [
     { id: 1, title: '첫 번째 게시글', author: '홍길동', date: '2025-11-18', views: 123, status: '공개' },
@@ -83,7 +91,7 @@ const Posts: React.FC = () => {
     <div>
       <div className="flex justify-between items-center mb-6">
         <h3 className="text-3xl font-medium text-gray-700 dark:text-white">
-          게시판 관리
+          게시글 관리
         </h3>
         <button
           onClick={() => navigate('/posts/create')}
@@ -94,6 +102,17 @@ const Posts: React.FC = () => {
       </div>
 
       <div className="mb-4 flex gap-2">
+        <select
+          value={selectedBoard}
+          onChange={(e) => setSelectedBoard(e.target.value)}
+          className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+        >
+          {boards.map((board) => (
+            <option key={board.id} value={board.id}>
+              {board.name}
+            </option>
+          ))}
+        </select>
         <input
           type="text"
           placeholder="검색..."

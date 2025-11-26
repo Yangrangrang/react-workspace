@@ -3,7 +3,14 @@ import { useNavigate } from 'react-router-dom';
 
 const PostCreate: React.FC = () => {
   const navigate = useNavigate();
+  const boards = [
+    { id: '1', name: '공지사항' },
+    { id: '2', name: '자유게시판' },
+    { id: '3', name: 'Q&A' },
+  ];
+
   const [formData, setFormData] = useState({
+    boardId: '1',
     title: '',
     content: '',
     author: '',
@@ -31,6 +38,24 @@ const PostCreate: React.FC = () => {
 
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
         <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              게시판
+            </label>
+            <select
+              value={formData.boardId}
+              onChange={(e) => setFormData({ ...formData, boardId: e.target.value })}
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+              required
+            >
+              {boards.map((board) => (
+                <option key={board.id} value={board.id}>
+                  {board.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               제목
