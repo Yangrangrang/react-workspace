@@ -1,26 +1,14 @@
 import React, { useState } from 'react';
 import { Table, Column } from '@webtest/shared';
-
-interface Board {
-  id: number;
-  name: string;
-  description: string;
-  postCount: number;
-  createdAt: string;
-}
+import { useBoards, Board } from '../contexts/BoardsContext';
 
 const Boards: React.FC = () => {
+  const { boards, addBoard } = useBoards();
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
   });
-
-  const boards: Board[] = [
-    { id: 1, name: '공지사항', description: '중요한 공지사항을 게시합니다', postCount: 15, createdAt: '2025-11-01' },
-    { id: 2, name: '자유게시판', description: '자유롭게 의견을 나누는 공간입니다', postCount: 128, createdAt: '2025-11-01' },
-    { id: 3, name: 'Q&A', description: '질문과 답변을 주고받는 게시판입니다', postCount: 67, createdAt: '2025-11-05' },
-  ];
 
   const columns: Column<Board>[] = [
     {
@@ -69,8 +57,10 @@ const Boards: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: API 호출로 게시판 생성
-    console.log('게시판 생성:', formData);
+    addBoard({
+      name: formData.name,
+      description: formData.description,
+    });
     setShowCreateModal(false);
     setFormData({ name: '', description: '' });
   };

@@ -1,16 +1,29 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useBoards } from '../contexts/BoardsContext';
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
+  const { boards } = useBoards();
 
-  const menuItems = [
+  const staticMenuItems = [
     { path: '/', label: '대시보드', icon: '📊' },
     { path: '/users', label: '사용자 관리', icon: '👥' },
     { path: '/boards', label: '게시판 관리', icon: '📋' },
     { path: '/posts', label: '게시글 관리', icon: '📝' },
-    { path: '/settings', label: '설정', icon: '⚙️' },
   ];
+
+  // 게시판 메뉴 항목 생성
+  const boardMenuItems = boards.map(board => ({
+    path: `/boards/${board.id}`,
+    label: board.name,
+    icon: '📄',
+  }));
+
+  const settingsMenuItem = { path: '/settings', label: '설정', icon: '⚙️' };
+
+  // 전체 메뉴 항목: 고정 메뉴 + 게시판 메뉴 + 설정
+  const menuItems = [...staticMenuItems, ...boardMenuItems, settingsMenuItem];
 
   return (
     <div className="flex flex-col w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
