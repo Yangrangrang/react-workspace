@@ -34,7 +34,12 @@ const Posts: React.FC = () => {
       header: '제목',
       className: 'min-w-[200px]',
       render: (post) => (
-        <span className="font-medium">{post.title}</span>
+        <button
+          onClick={() => navigate(`/posts/${post.id}`)}
+          className="font-medium text-left hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+        >
+          {post.title}
+        </button>
       ),
     },
     {
