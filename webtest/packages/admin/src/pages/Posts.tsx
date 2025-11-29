@@ -81,10 +81,21 @@ const Posts: React.FC = () => {
       header: '작업',
       render: (post) => (
         <div className="flex gap-3">
-          <button className="text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-300">
+          <button
+            onClick={() => navigate(`/posts/edit/${post.id}`)}
+            className="text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-300"
+          >
             수정
           </button>
-          <button className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+          <button
+            onClick={() => {
+              if (window.confirm('정말 삭제하시겠습니까?')) {
+                // TODO: 삭제 API 호출
+                console.log('게시글 삭제:', post.id);
+              }
+            }}
+            className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
+          >
             삭제
           </button>
         </div>

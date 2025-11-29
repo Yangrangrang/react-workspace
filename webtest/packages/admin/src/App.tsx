@@ -11,6 +11,7 @@ import Users from './pages/Users';
 import Boards from './pages/Boards';
 import Posts from './pages/Posts';
 import PostCreate from './pages/PostCreate';
+import PostEdit from './pages/PostEdit';
 import PostDetail from './pages/PostDetail';
 import Settings from './pages/Settings';
 import './App.css';
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/boards" element={<Boards />} />
                 <Route path="/posts" element={<Posts />} />
                 <Route path="/posts/create" element={<PostCreate />} />
+                <Route path="/posts/edit/:id" element={<PostEdit />} />
                 <Route path="/posts/:id" element={<PostDetail />} />
                 <Route path="/settings" element={<Settings />} />
               </Route>
