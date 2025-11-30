@@ -6,14 +6,14 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { BoardsProvider } from './contexts/BoardsContext';
 import { queryClient } from './lib/queryClient';
 import Layout from './components/Layout';
-import Dashboard from './pages/Dashboard';
-import Users from './pages/Users';
-import Boards from './pages/Boards';
-import Posts from './pages/Posts';
-import PostCreate from './pages/PostCreate';
-import PostEdit from './pages/PostEdit';
-import PostDetail from './pages/PostDetail';
-import Settings from './pages/Settings';
+import Dashboard from './pages/dashboard/Dashboard';
+import Users from './pages/users/Users';
+import Boards from './pages/boards/Boards';
+import Posts from './pages/posts/Posts';
+import PostCreate from './pages/posts/PostCreate';
+import PostEdit from './pages/posts/PostEdit';
+import PostDetail from './pages/posts/PostDetail';
+import Settings from './pages/settings/Settings';
 import './App.css';
 
 function App() {
