@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Table, Column } from '@webtest/shared';
-import { useBoards, Board } from '../contexts/BoardsContext';
+import { useBoards, Board } from '../../contexts/BoardsContext';
 
 const Boards: React.FC = () => {
   const { boards, addBoard } = useBoards();
