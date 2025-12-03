@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Table, Column } from '@webtest/shared';
 import { useBoards, Board } from '../../contexts/BoardsContext';
+import { FormInput, FormTextarea } from '../../components/forms';
 
 const Boards: React.FC = () => {
   const { boards, addBoard } = useBoards();
@@ -94,33 +95,24 @@ const Boards: React.FC = () => {
             </h4>
 
             <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  게시판 이름
-                </label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  placeholder="게시판 이름을 입력하세요"
-                  required
-                />
-              </div>
+              <FormInput
+                label="게시판 이름"
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                placeholder="게시판 이름을 입력하세요"
+                required
+              />
 
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  설명
-                </label>
-                <textarea
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  rows={3}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  placeholder="게시판 설명을 입력하세요"
-                  required
-                />
-              </div>
+              <FormTextarea
+                label="설명"
+                value={formData.description}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                rows={3}
+                placeholder="게시판 설명을 입력하세요"
+                required
+                className="mb-6"
+              />
 
               <div className="flex gap-3 justify-end">
                 <button
