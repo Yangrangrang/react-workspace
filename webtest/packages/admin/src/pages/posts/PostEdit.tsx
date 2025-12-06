@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { FormInput, FormTextarea, FormSelect } from '../../components/forms';
 
 const PostEdit: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
   const boards = [
-    { id: '1', name: '공지사항' },
-    { id: '2', name: '자유게시판' },
-    { id: '3', name: 'Q&A' },
+    { value: '1', label: '공지사항' },
+    { value: '2', label: '자유게시판' },
+    { value: '3', label: 'Q&A' },
   ];
 
   const [formData, setFormData] = useState({
@@ -57,79 +58,51 @@ const PostEdit: React.FC = () => {
 
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              게시판
-            </label>
-            <select
-              value={formData.boardId}
-              onChange={(e) => setFormData({ ...formData, boardId: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
-              required
-            >
-              {boards.map((board) => (
-                <option key={board.id} value={board.id}>
-                  {board.name}
-                </option>
-              ))}
-            </select>
-          </div>
+          <FormSelect
+            label="게시판"
+            options={boards}
+            value={formData.boardId}
+            onChange={(e) => setFormData({ ...formData, boardId: e.target.value })}
+            required
+          />
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              제목
-            </label>
-            <input
-              type="text"
-              value={formData.title}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
-              placeholder="게시글 제목을 입력하세요"
-              required
-            />
-          </div>
+          <FormInput
+            label="제목"
+            type="text"
+            value={formData.title}
+            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            placeholder="게시글 제목을 입력하세요"
+            required
+          />
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              작성자
-            </label>
-            <input
-              type="text"
-              value={formData.author}
-              onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
-              placeholder="작성자 이름을 입력하세요"
-              required
-            />
-          </div>
+          <FormInput
+            label="작성자"
+            type="text"
+            value={formData.author}
+            onChange={(e) => setFormData({ ...formData, author: e.target.value })}
+            placeholder="작성자 이름을 입력하세요"
+            required
+          />
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              내용
-            </label>
-            <textarea
-              value={formData.content}
-              onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-              rows={10}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
-              placeholder="게시글 내용을 입력하세요"
-              required
-            />
-          </div>
+          <FormTextarea
+            label="내용"
+            value={formData.content}
+            onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+            rows={10}
+            placeholder="게시글 내용을 입력하세요"
+            required
+          />
 
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              공개 상태
-            </label>
-            <select
-              value={formData.status}
-              onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
-            >
-              <option value="공개">공개</option>
-              <option value="비공개">비공개</option>
-            </select>
-          </div>
+          <FormSelect
+            label="공개 상태"
+            options={[
+              { value: '공개', label: '공개' },
+              { value: '비공개', label: '비공개' },
+            ]}
+            value={formData.status}
+            onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+            className="mb-6"
+          />
 
           <div className="flex gap-3 justify-end">
             <button
