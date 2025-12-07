@@ -10,6 +10,7 @@ const Boards: React.FC = () => {
     name: '',
     description: '',
   });
+  console.log(formData);
 
   const columns: Column<Board>[] = [
     {
