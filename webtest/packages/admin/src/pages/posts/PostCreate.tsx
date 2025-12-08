@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormInput, FormTextarea, FormSelect } from '../../components/forms';
+import { FormInput, FormTextarea, FormSelect } from '@webtest/shared';
 
 const PostCreate: React.FC = () => {
   const navigate = useNavigate();
