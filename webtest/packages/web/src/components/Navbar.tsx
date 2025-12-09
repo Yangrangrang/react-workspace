@@ -35,15 +35,6 @@ const Navbar: React.FC = () => {
           `}>
             <li className="h-20 flex items-center max-md:w-full max-md:h-15">
               <Link
-                to="/"
-                className="text-white no-underline px-6 py-2 h-full flex items-center transition-all hover:bg-white/10 hover:rounded"
-                onClick={closeMenu}
-              >
-                Home
-              </Link>
-            </li>
-            <li className="h-20 flex items-center max-md:w-full max-md:h-15">
-              <Link
                 to="/about"
                 className="text-white no-underline px-6 py-2 h-full flex items-center transition-all hover:bg-white/10 hover:rounded"
                 onClick={closeMenu}
