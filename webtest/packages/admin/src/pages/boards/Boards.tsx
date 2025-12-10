@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Table, Column } from '@webtest/shared';
+import { Table, Column, FormInput, FormTextarea } from '@webtest/shared';
 import { useBoards, Board } from '../../contexts/BoardsContext';
-import { FormInput, FormTextarea } from '../../components/forms';
 
 const Boards: React.FC = () => {
   const { boards, addBoard } = useBoards();
