@@ -31,7 +31,7 @@ export function Table<T>({
   };
 
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-lg shadow ${className}`}>
+    <div className={className}>
       <table className="w-full divide-y divide-gray-200 dark:divide-gray-700">
         <thead className="bg-gray-50 dark:bg-gray-700">
           <tr>

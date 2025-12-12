@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
-import { Table, Column, FormInput, FormTextarea } from '@webtest/shared';
+import { Table, Column, FormInput, FormTextarea, Pagination } from '@webtest/shared';
 import { useBoards, Board } from '../../contexts/BoardsContext';
 
 const Boards: React.FC = () => {
-  const { boards, addBoard } = useBoards();
+  const {
+    paginatedBoards,
+    totalBoards,
+    currentPage,
+    itemsPerPage,
+    totalPages,
+    addBoard,
+    setPage,
+    setItemsPerPage,
+  } = useBoards();
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -80,11 +89,21 @@ const Boards: React.FC = () => {
         </button>
       </div>
 
-      <Table
-        columns={columns}
-        data={boards}
-        keyExtractor={(board) => board.id}
-      />
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
+        <Table
+          columns={columns}
+          data={paginatedBoards}
+          keyExtractor={(board) => board.id}
+        />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalItems={totalBoards}
+          itemsPerPage={itemsPerPage}
+          onPageChange={setPage}
+          onItemsPerPageChange={setItemsPerPage}
+        />
+      </div>
 
       {/* 게시판 생성 모달 */}
       {showCreateModal && (
