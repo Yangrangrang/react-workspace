@@ -24,35 +24,35 @@ const Boards: React.FC = () => {
     {
       key: 'name',
       header: '게시판 이름',
-      render: (board) => (
+      render: (board: Board) => (
         <span className="font-medium">{board.name}</span>
       ),
     },
     {
       key: 'description',
       header: '설명',
-      render: (board) => (
+      render: (board: Board) => (
         <span className="text-gray-500 dark:text-gray-400">{board.description}</span>
       ),
     },
     {
       key: 'postCount',
       header: '게시글 수',
-      render: (board) => (
+      render: (board: Board) => (
         <span className="text-gray-500 dark:text-gray-400">{board.postCount}개</span>
       ),
     },
     {
       key: 'createdAt',
       header: '생성일',
-      render: (board) => (
+      render: (board: Board) => (
         <span className="text-gray-500 dark:text-gray-400">{board.createdAt}</span>
       ),
     },
     {
       key: 'actions',
       header: '작업',
-      render: (board) => (
+      render: (board: Board) => (
         <div className="flex gap-3">
           <button className="text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-300">
             수정
@@ -92,7 +92,7 @@ const Boards: React.FC = () => {
       <Table
         columns={columns}
         data={paginatedBoards}
-        keyExtractor={(board) => board.id}
+        keyExtractor={(board: Board) => board.id}
         className="bg-white dark:bg-gray-800 rounded-lg shadow"
         pagination={{
           currentPage,
@@ -117,7 +117,7 @@ const Boards: React.FC = () => {
                 label="게시판 이름"
                 type="text"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="게시판 이름을 입력하세요"
                 required
               />
@@ -125,7 +125,7 @@ const Boards: React.FC = () => {
               <FormTextarea
                 label="설명"
                 value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setFormData({ ...formData, description: e.target.value })}
                 rows={3}
                 placeholder="게시판 설명을 입력하세요"
                 required
