@@ -14,6 +14,7 @@ interface Post {
 const Posts: React.FC = () => {
   const navigate = useNavigate();
   const [selectedBoard, setSelectedBoard] = React.useState('all');
+  console.log(navigate);
 
   const boards = [
     { id: 'all', name: '전체' },
